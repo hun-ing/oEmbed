@@ -23,11 +23,16 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // https://mvnrepository.com/artifact/eu.michael-simons/java-oembed
+    implementation group: 'eu.michael-simons', name: 'java-oembed', version: '0.8.1'
+    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect'
 }
 
 tasks.named('test') {
