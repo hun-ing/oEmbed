@@ -6,12 +6,19 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<input id="targetUrl" type="text">
+<label>URL 검색 : &nbsp;</label><input id="targetUrl" type="text" style="width: 50%;">
 <button id="searchBtn">검색</button>
-<div id="contents"></div>
+<table class="table table-bordered">
+	<tbody id="contentBody">
+	</tbody>
+</table>
 
 </body>
 <script>
@@ -22,17 +29,58 @@
             return alert('url을 입력해주세요');
         }
 
-        fetch(`/oembed?url=`+targetUrl, {
+        fetch(`/oembed?url=` + targetUrl, {
             method: 'GET'
         })
-		.then((response) => response.json())
-		.then((data) => {
-            console.log(data)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                Object.entries(data).forEach(([key, value]) => {
+                    console.log(key);
+                    console.log(value);
 
-            let html = data.html;
-            document.querySelector('#contents').innerHTML = html;
-        })
-		.catch((error) => console.error(error))
+                    const tr = document.createElement('tr');
+                    const td1 = document.createElement('td');
+                    const td2 = document.createElement('td');
+
+                    if (key === 'html') {
+                        td1.innerHTML = `${key}(${data.width}/${data.height})`;
+
+                        const span1 = document.createElement('span');
+                        const span2 = document.createElement('span');
+                        span1.innerText = `${value}`;
+                        span2.innerHTML = `${value}`;
+
+                        td2.append(span1);
+                        td2.append(span2);
+                    } else if (key === 'thumbnailUrl') {
+                        td1.innerText = `${key}(${data.thumbnailWidth}/${data.thumbnailHeight})`;
+                        const a = document.createElement('a');
+                        a.innerText = `${value}`;
+                        a.href = `${value}`;
+                        a.target = '_blank';
+
+                        td2.append(a);
+					} else if (key === 'providerUrl' || key === 'authorUrl') {
+                        td1.innerText = `${key}`;
+                        const a = document.createElement('a');
+                        a.innerText = `${value}`;
+                        a.href = `${value}`;
+                        a.target = '_blank';
+
+                        td2.append(a);
+					} else {
+                        td1.innerHTML = `${key}`;
+                        td2.innerHTML = `${value}`;
+					}
+
+                    tr.append(td1);
+                    tr.append(td2);
+
+                    document.querySelector('#contentBody').append(tr);
+                })
+            })
+            .catch((error) => console.error(error))
     })
 </script>
 </html>
