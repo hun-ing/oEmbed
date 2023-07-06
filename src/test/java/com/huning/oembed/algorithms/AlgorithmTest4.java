@@ -4,13 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class AlgorithmTest4 {
 
 	private static HashMap<String, Integer[]> fruitMap;
 
 	static {
-		// 과일 코드 초기화
 		fruitMap = new HashMap<>();
 
 		fruitMap.put("kiwi", new Integer[]{1,3,24,26,47,49,68,70,91,93});
@@ -25,13 +25,39 @@ public class AlgorithmTest4 {
 		fruitMap.put("cherry", new Integer[]{20,22,41,43,62,64,66,85,87,89});
 	}
 
+	private String findFruitCode(int n) {
+		while (n > 0) {
+			int sum = 0;
+			int t = n;
+			while (t > 0) {
+				sum += t % 10;
+				t /= 10;
+			}
+			n = n - sum;
+
+			if (n > 100) {
+				continue;
+			}
+
+			for (Map.Entry<String, Integer[]> entry : fruitMap.entrySet()) {
+				Integer[] codes = entry.getValue();
+				for (int code : codes) {
+					if (code == n) {
+						return entry.getKey();
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
 	@Test
-	@DisplayName("")
-	void test() throws Exception {
-	    // given
-
-	    // when
-
-	    // then
+	@DisplayName("풀이1")
+	void test1() {
+		for (int i = 10; i <= 10000; i++) {
+			String fruit = findFruitCode(i);
+			System.out.println(String.format("[%d] fruit = %s", i, fruit));
+		}
 	}
 }
