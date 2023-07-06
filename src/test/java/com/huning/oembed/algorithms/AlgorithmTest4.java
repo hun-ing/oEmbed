@@ -53,7 +53,7 @@ public class AlgorithmTest4 {
 	}
 
 	@Test
-	@DisplayName("풀이1")
+	@DisplayName("4번 문제")
 	void test1() {
 		for (int i = 10; i <= 10000; i++) {
 			String fruit = findFruitCode(i);

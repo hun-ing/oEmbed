@@ -1,7 +1,6 @@
 package com.huning.oembed.algorithms;
 
 import groovy.util.logging.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -37,7 +34,7 @@ public class AlgorithmTest5 {
 	}
 
 	@Test
-	@DisplayName("")
+	@DisplayName("5번 문제")
 	void test() {
 		// 짝수나 홀수 둘 중 하나가 1개만 들어있는 랜덤 숫자 배열 생성
 		int[] randomArray = createRandomArray(10, 1, 100);

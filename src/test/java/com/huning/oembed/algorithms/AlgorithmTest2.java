@@ -31,7 +31,7 @@ public class AlgorithmTest2 {
 	}
 
 	@Test
-	@DisplayName("")
+	@DisplayName("2번 문제")
 	void test() throws Exception {
 		String s1 = "()";
 		assertThat(isValid(s1)).isTrue();

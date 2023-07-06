@@ -36,6 +36,11 @@
             .then((data) => {
                 console.log(data)
                 document.querySelector('#contentBody').innerHTML = '';
+
+                if (Number(data.status) === 500) {
+                    return alert("유효하지 않은 URL입니다.");
+				}
+
                 Object.entries(data).forEach(([key, value]) => {
                     console.log(key);
                     console.log(value);

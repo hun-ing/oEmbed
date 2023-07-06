@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class AlgorithmTest3 {
 
 	@Test
-	@DisplayName("피보나치 수열을 이용한 풀이")
+	@DisplayName("3번 문제")
 	void test1() {
 		ClimbingStairs climbingStairs = new ClimbingStairs();
 

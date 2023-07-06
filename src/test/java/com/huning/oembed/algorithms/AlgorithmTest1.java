@@ -30,7 +30,7 @@ public class AlgorithmTest1 {
 	}
 
 	@Test
-	@DisplayName("")
+	@DisplayName("1번 문제")
 	void test() {
 		String[] arr = {"stayfolio", "hand", "curation", "tuna", "tuna", "yes", "no", "no", "style", "stash"};
 		String[] expected = {"no", "yes", "hand", "tuna", "stash", "style", "curation", "stayfolio"};
